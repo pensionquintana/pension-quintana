@@ -1,32 +1,38 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pensión Quintana — Prellezo, Cantabria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap');
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --verde:#2d5016;--verde-med:#4a7c2f;--verde-claro:#7aad4f;--verde-suave:#e8f0e0;
     --tierra:#8b5e3c;--tierra-claro:#c4956a;--crema:#faf6f0;--crema2:#f0e8d8;
-    --gris:#5a5a5a;--gris-claro:#e8e8e8;--blanco:#ffffff;
+    --gris:#5a5a5a;--gris-claro:#e8e8e8;
     --fuente-titulo:'Playfair Display',serif;--fuente-cuerpo:'Lato',sans-serif;
   }
   body{font-family:var(--fuente-cuerpo);background:var(--crema);color:#333;overflow-x:hidden}
   .nav{position:sticky;top:0;z-index:100;background:rgba(250,246,240,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--crema2);padding:0 2rem}
   .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{font-family:var(--fuente-titulo);font-size:1.3rem;color:var(--verde);font-weight:600;letter-spacing:0.5px}
+  .logo{font-family:var(--fuente-titulo);font-size:1.3rem;color:var(--verde);font-weight:600}
   .logo span{color:var(--tierra);font-size:0.8rem;display:block;font-family:var(--fuente-cuerpo);font-weight:300;letter-spacing:2px;text-transform:uppercase;margin-top:-4px}
   .nav-links{display:flex;gap:1.8rem;list-style:none}
-  .nav-links a{text-decoration:none;color:var(--gris);font-size:0.88rem;letter-spacing:0.5px;text-transform:uppercase;font-weight:700;transition:color 0.2s}
+  .nav-links a{text-decoration:none;color:var(--gris);font-size:0.88rem;letter-spacing:0.5px;text-transform:uppercase;font-weight:700;transition:color 0.2s;cursor:pointer}
   .nav-links a:hover{color:var(--verde)}
+  .oferta-banner{background:var(--tierra);color:#fff;text-align:center;padding:10px 2rem;font-size:0.88rem;font-weight:700}
+  .oferta-banner span{background:rgba(255,255,255,0.2);border-radius:20px;padding:2px 10px;margin:0 4px}
   .hero{background:linear-gradient(160deg,#1a3a0a 0%,#2d5016 40%,#4a7c2f 100%);min-height:500px;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
   .hero-content{position:relative;z-index:1}
   .hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.9);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:1.5rem}
   .hero h1{font-family:var(--fuente-titulo);font-size:3.2rem;color:#fff;font-weight:600;line-height:1.2;margin-bottom:1rem}
   .hero h1 em{color:var(--tierra-claro);font-style:normal}
   .hero p{color:rgba(255,255,255,0.8);font-size:1.05rem;font-weight:300;max-width:520px;margin:0 auto 2rem;line-height:1.7}
   .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-  .btn-prim{background:var(--tierra);color:#fff;padding:12px 28px;border:none;border-radius:4px;font-family:var(--fuente-cuerpo);font-size:0.9rem;font-weight:700;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s}
+  .btn-prim{background:var(--tierra);color:#fff;padding:12px 28px;border:none;border-radius:4px;font-family:var(--fuente-cuerpo);font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.2s}
   .btn-prim:hover{background:var(--tierra-claro)}
-  .btn-sec{background:transparent;color:#fff;padding:12px 28px;border:1px solid rgba(255,255,255,0.5);border-radius:4px;font-family:var(--fuente-cuerpo);font-size:0.9rem;font-weight:700;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s}
+  .btn-sec{background:transparent;color:#fff;padding:12px 28px;border:1px solid rgba(255,255,255,0.5);border-radius:4px;font-family:var(--fuente-cuerpo);font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.2s}
   .btn-sec:hover{background:rgba(255,255,255,0.1)}
   .section{padding:5rem 2rem}
   .section-inner{max-width:1100px;margin:0 auto}
@@ -38,7 +44,7 @@
   .amenity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem}
   .amenity-card{background:#fff;border-radius:8px;padding:1.5rem 1rem;text-align:center;border:1px solid rgba(74,124,47,0.15)}
   .amenity-icon{font-size:2rem;margin-bottom:0.8rem}
-  .amenity-name{font-size:0.85rem;font-weight:700;color:var(--verde);letter-spacing:0.5px}
+  .amenity-name{font-size:0.85rem;font-weight:700;color:var(--verde)}
   .rooms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
   .room-card{background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--crema2);transition:transform 0.2s}
   .room-card:hover{transform:translateY(-3px)}
@@ -46,16 +52,19 @@
   .room-img.verde{background:linear-gradient(135deg,#2d5016,#4a7c2f)}
   .room-img.tierra{background:linear-gradient(135deg,#6b3f1f,#8b5e3c)}
   .room-img.bosque{background:linear-gradient(135deg,#1a3a0a,#2d5016)}
-  .room-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.95);color:var(--verde);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:0.5px}
+  .room-badge{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.95);color:var(--verde);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px}
+  .oferta-tag{position:absolute;top:12px;left:12px;background:var(--tierra);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px}
   .room-body{padding:1.5rem}
   .room-name{font-family:var(--fuente-titulo);font-size:1.2rem;color:var(--verde);font-weight:600;margin-bottom:0.4rem}
   .room-desc{font-size:0.85rem;color:var(--gris);line-height:1.6;margin-bottom:1rem}
   .room-features{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
   .room-feat{background:var(--verde-suave);color:var(--verde);font-size:0.75rem;padding:3px 10px;border-radius:20px;font-weight:700}
   .room-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--crema2);padding-top:1rem}
-  .room-price{font-family:var(--fuente-titulo);font-size:1.5rem;color:var(--tierra);font-weight:600}
-  .room-price span{font-size:0.8rem;color:var(--gris);font-family:var(--fuente-cuerpo);font-weight:400}
-  .btn-book{background:var(--verde);color:#fff;border:none;padding:8px 18px;border-radius:4px;font-size:0.82rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;transition:background 0.2s}
+  .price-main{font-family:var(--fuente-titulo);font-size:1.5rem;color:var(--tierra);font-weight:600;line-height:1}
+  .price-main span{font-size:0.8rem;color:var(--gris);font-family:var(--fuente-cuerpo);font-weight:400}
+  .price-oferta{font-size:0.75rem;color:var(--verde-med);font-weight:700;margin-top:2px}
+  .price-extra{font-size:0.72rem;color:var(--gris);margin-top:1px}
+  .btn-book{background:var(--verde);color:#fff;border:none;padding:8px 18px;border-radius:4px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:background 0.2s}
   .btn-book:hover{background:var(--verde-med)}
   .booking-section{background:var(--crema2)}
   .booking-form{background:#fff;border-radius:12px;padding:2.5rem;max-width:700px;margin:0 auto;border:1px solid rgba(139,94,60,0.15)}
@@ -66,7 +75,11 @@
   .form-input{border:1px solid var(--gris-claro);border-radius:6px;padding:10px 14px;font-family:var(--fuente-cuerpo);font-size:0.9rem;color:#333;transition:border-color 0.2s;background:#fff}
   .form-input:focus{outline:none;border-color:var(--verde-claro)}
   .form-select{border:1px solid var(--gris-claro);border-radius:6px;padding:10px 14px;font-family:var(--fuente-cuerpo);font-size:0.9rem;color:#333;background:#fff;cursor:pointer}
-  .form-submit{background:var(--tierra);color:#fff;border:none;padding:14px;border-radius:6px;font-family:var(--fuente-cuerpo);font-size:0.95rem;font-weight:700;cursor:pointer;letter-spacing:0.5px;width:100%;margin-top:0.5rem;transition:background 0.2s}
+  .precio-estimado{background:var(--verde-suave);border-radius:8px;padding:1rem 1.2rem;margin-top:1rem;display:none}
+  .precio-estimado .pe-label{font-size:0.78rem;color:var(--verde-med);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+  .precio-estimado .pe-total{font-family:var(--fuente-titulo);font-size:1.8rem;color:var(--verde);font-weight:600}
+  .precio-estimado .pe-detalle{font-size:0.8rem;color:var(--gris);margin-top:2px}
+  .form-submit{background:var(--tierra);color:#fff;border:none;padding:14px;border-radius:6px;font-family:var(--fuente-cuerpo);font-size:0.95rem;font-weight:700;cursor:pointer;width:100%;margin-top:0.5rem;transition:background 0.2s}
   .form-submit:hover{background:var(--tierra-claro)}
   .form-note{font-size:0.78rem;color:var(--gris);text-align:center;margin-top:0.8rem}
   .success-msg{display:none;background:var(--verde-suave);border:1px solid var(--verde-claro);color:var(--verde);border-radius:8px;padding:1.2rem;text-align:center;margin-top:1rem;font-weight:700}
@@ -81,8 +94,7 @@
   .chat-header-info p{color:rgba(255,255,255,0.75);font-size:0.75rem;margin:0}
   .chat-dot{width:8px;height:8px;background:#7aad4f;border-radius:50%;display:inline-block;margin-right:5px}
   .chat-messages{height:320px;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;background:var(--crema)}
-  .msg{max-width:75%;animation:fadeIn 0.3s ease}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .msg{max-width:75%}
   .msg-bot{align-self:flex-start}
   .msg-user{align-self:flex-end}
   .msg-bubble{padding:10px 14px;border-radius:12px;font-size:0.88rem;line-height:1.6}
@@ -90,23 +102,23 @@
   .msg-user .msg-bubble{background:var(--verde);color:#fff;border-bottom-right-radius:4px}
   .msg-time{font-size:0.7rem;color:var(--gris);margin-top:3px;padding:0 4px}
   .msg-user .msg-time{text-align:right}
-  .chat-typing{display:none;align-items:center;gap:6px;padding:0.5rem 0}
+  .chat-typing{display:none;align-items:center;gap:6px;padding:0.5rem 1.5rem}
   .chat-typing span{width:7px;height:7px;background:var(--gris);border-radius:50%;animation:bounce 1.2s infinite}
   .chat-typing span:nth-child(2){animation-delay:0.2s}
   .chat-typing span:nth-child(3){animation-delay:0.4s}
   @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
   .chat-input-area{padding:1rem 1.2rem;border-top:1px solid var(--crema2);background:#fff;display:flex;gap:10px}
-  .chat-input{flex:1;border:1px solid var(--gris-claro);border-radius:20px;padding:10px 16px;font-family:var(--fuente-cuerpo);font-size:0.88rem;outline:none;transition:border-color 0.2s}
+  .chat-input{flex:1;border:1px solid var(--gris-claro);border-radius:20px;padding:10px 16px;font-family:var(--fuente-cuerpo);font-size:0.88rem;outline:none}
   .chat-input:focus{border-color:var(--verde-claro)}
-  .chat-send{background:var(--verde);color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;transition:background 0.2s;display:flex;align-items:center;justify-content:center}
+  .chat-send{background:var(--verde);color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center}
   .chat-send:hover{background:var(--verde-med)}
   .quick-btns{padding:0.8rem 1.2rem;background:#fff;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--crema2)}
-  .quick-btn{background:var(--verde-suave);color:var(--verde);border:none;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;transition:background 0.2s;font-family:var(--fuente-cuerpo)}
+  .quick-btn{background:var(--verde-suave);color:var(--verde);border:none;padding:5px 12px;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:var(--fuente-cuerpo)}
   .quick-btn:hover{background:var(--verde-claro);color:#fff}
   .location-section{background:#fff}
-  .location-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-  .location-map{background:var(--verde-suave);border-radius:12px;height:300px;display:flex;align-items:center;justify-content:center;font-size:3rem;border:2px dashed rgba(74,124,47,0.3);position:relative;overflow:hidden}
-  .location-map::after{content:'📍 Prellezo, Cantabria\nCerca de los Picos de Europa';white-space:pre-line;text-align:center;font-size:0.9rem;font-weight:700;color:var(--verde);font-family:var(--fuente-cuerpo)}
+  .location-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  .map-container{border-radius:12px;overflow:hidden;border:1px solid var(--crema2);height:340px}
+  .map-container iframe{width:100%;height:100%;border:none;display:block}
   .location-info h3{font-family:var(--fuente-titulo);font-size:1.6rem;color:var(--verde);margin-bottom:1rem;font-weight:600}
   .location-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:1rem}
   .loc-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
@@ -115,16 +127,18 @@
   .footer{background:#1a2e0a;color:rgba(255,255,255,0.7);padding:3rem 2rem;text-align:center}
   .footer-logo{font-family:var(--fuente-titulo);font-size:1.5rem;color:#fff;margin-bottom:0.5rem}
   .footer-links{display:flex;justify-content:center;gap:2rem;margin:1.5rem 0;flex-wrap:wrap}
-  .footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+  .footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;cursor:pointer}
   .footer-links a:hover{color:var(--tierra-claro)}
   .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:1.5rem}
   .ical-banner{background:var(--tierra);color:#fff;padding:0.8rem 2rem;text-align:center;font-size:0.82rem}
   .ical-banner a{color:var(--crema2);font-weight:700}
   section{scroll-margin-top:60px}
 </style>
+</head>
+<body>
 
 <div class="ical-banner">
-  🗓 Sincronización con Airbnb activa via iCal &nbsp;·&nbsp; 
+  🗓 Sincronización con Airbnb activa via iCal &nbsp;·&nbsp;
   <a href="#reservar">Consultar disponibilidad</a>
 </div>
 
@@ -132,13 +146,17 @@
   <div class="nav-inner">
     <div class="logo">Pensión Quintana <span>Prellezo · Cantabria</span></div>
     <ul class="nav-links">
-      <li><a href="#habitaciones" onclick="scrollTo('habitaciones')">Habitaciones</a></li>
-      <li><a href="#reservar" onclick="scrollTo('reservar')">Reservar</a></li>
-      <li><a href="#ubicacion" onclick="scrollTo('ubicacion')">Ubicación</a></li>
-      <li><a href="#chat" onclick="scrollTo('chat')">Consultas</a></li>
+      <li><a onclick="document.getElementById('habitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</a></li>
+      <li><a onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</a></li>
+      <li><a onclick="document.getElementById('ubicacion').scrollIntoView({behavior:'smooth'})">Ubicación</a></li>
+      <li><a onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">Consultas</a></li>
     </ul>
   </div>
 </nav>
+
+<div class="oferta-banner">
+  🎉 Oferta hasta el 1 de julio — Reserva más de una noche y ahorra <span>5€ por noche</span>
+</div>
 
 <section class="hero" id="inicio">
   <div class="hero-content">
@@ -180,49 +198,74 @@
     </div>
     <div class="rooms-grid">
       <div class="room-card">
-        <div class="room-img verde"><span style="font-size:3rem">🛏️</span><div class="room-badge">Matrimonio + supletoria</div></div>
+        <div class="room-img verde"><span>🛏️</span>
+          <div class="room-badge">Matrimonio + supletoria</div>
+          <div class="oferta-tag">-5€/noche +2 noches</div>
+        </div>
         <div class="room-body">
           <div class="room-name">Habitación Doble Deluxe</div>
-          <div class="room-desc">Cama de matrimonio con opción de sofá cama supletorio. Ideal para parejas o familia con un niño pequeño. Disponible x2.</div>
-          <div class="room-features"><span class="room-feat">👫 2+1 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
+          <div class="room-desc">Cama de matrimonio con sofá cama supletorio opcional. Perfecta para parejas o familia con un niño. Disponible x2.</div>
+          <div class="room-features"><span class="room-feat">👫 2 personas</span><span class="room-feat">👨‍👩‍👧 +1 con supletoria</span><span class="room-feat">🛁 Baño privado</span></div>
           <div class="room-footer">
-            <div class="room-price">65€ <span>/ noche</span></div>
+            <div>
+              <div class="price-main">60€ <span>/ noche · 2 pers.</span></div>
+              <div class="price-extra">70€/noche con supletoria (3 pers.)</div>
+              <div class="price-oferta">✨ 55€/noche reservando 2+ noches</div>
+            </div>
             <button class="btn-book" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</button>
           </div>
         </div>
       </div>
       <div class="room-card">
-        <div class="room-img tierra"><span style="font-size:3rem">🌿</span><div class="room-badge">Matrimonio</div></div>
+        <div class="room-img tierra"><span>🌿</span>
+          <div class="room-badge">Matrimonio</div>
+          <div class="oferta-tag">-5€/noche +2 noches</div>
+        </div>
         <div class="room-body">
           <div class="room-name">Habitación Doble Clásica</div>
-          <div class="room-desc">Dos habitaciones dobles con cama de matrimonio. Perfectas para parejas que buscan tranquilidad y confort en plena naturaleza.</div>
+          <div class="room-desc">Dos habitaciones dobles con cama de matrimonio. Perfectas para parejas que buscan tranquilidad en plena naturaleza. Disponible x2.</div>
           <div class="room-features"><span class="room-feat">👫 2 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
           <div class="room-footer">
-            <div class="room-price">55€ <span>/ noche</span></div>
+            <div>
+              <div class="price-main">60€ <span>/ noche</span></div>
+              <div class="price-oferta">✨ 55€/noche reservando 2+ noches</div>
+            </div>
             <button class="btn-book" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</button>
           </div>
         </div>
       </div>
       <div class="room-card">
-        <div class="room-img verde"><span style="font-size:3rem">🏔️</span><div class="room-badge">2 camas</div></div>
+        <div class="room-img verde"><span>🏔️</span>
+          <div class="room-badge">2 camas individuales</div>
+          <div class="oferta-tag">-5€/noche +2 noches</div>
+        </div>
         <div class="room-body">
           <div class="room-name">Habitación Twin</div>
           <div class="room-desc">Dos camas individuales, perfecta para amigos o hermanos que viajan juntos y quieren un espacio propio.</div>
           <div class="room-features"><span class="room-feat">👥 2 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
           <div class="room-footer">
-            <div class="room-price">55€ <span>/ noche</span></div>
+            <div>
+              <div class="price-main">60€ <span>/ noche</span></div>
+              <div class="price-oferta">✨ 55€/noche reservando 2+ noches</div>
+            </div>
             <button class="btn-book" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</button>
           </div>
         </div>
       </div>
       <div class="room-card">
-        <div class="room-img bosque"><span style="font-size:3rem">👨‍👩‍👧</span><div class="room-badge">Familiar</div></div>
+        <div class="room-img bosque"><span>👨‍👩‍👧</span>
+          <div class="room-badge">Familiar</div>
+          <div class="oferta-tag">-5€/noche +2 noches</div>
+        </div>
         <div class="room-body">
           <div class="room-name">Habitación Triple</div>
-          <div class="room-desc">Tres camas individuales, la opción ideal para familias con dos hijos o grupos de tres amigos que quieren compartir espacio.</div>
+          <div class="room-desc">Tres camas individuales, ideal para familias con dos hijos o grupos de tres amigos que quieren compartir espacio.</div>
           <div class="room-features"><span class="room-feat">👨‍👩‍👧 3 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
           <div class="room-footer">
-            <div class="room-price">75€ <span>/ noche</span></div>
+            <div>
+              <div class="price-main">70€ <span>/ noche</span></div>
+              <div class="price-oferta">✨ 65€/noche reservando 2+ noches</div>
+            </div>
             <button class="btn-book" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</button>
           </div>
         </div>
@@ -250,20 +293,21 @@
         </div>
         <div class="form-group">
           <label class="form-label">Fecha entrada</label>
-          <input class="form-input" type="date" id="f-entrada">
+          <input class="form-input" type="date" id="f-entrada" onchange="calcPrecio()">
         </div>
         <div class="form-group">
           <label class="form-label">Fecha salida</label>
-          <input class="form-input" type="date" id="f-salida">
+          <input class="form-input" type="date" id="f-salida" onchange="calcPrecio()">
         </div>
         <div class="form-group">
           <label class="form-label">Habitación</label>
-          <select class="form-select" id="f-hab">
+          <select class="form-select" id="f-hab" onchange="calcPrecio()">
             <option value="">Selecciona...</option>
-            <option>Doble Deluxe (matrimonio + supletoria)</option>
-            <option>Doble Clásica (matrimonio)</option>
-            <option>Twin (2 camas individuales)</option>
-            <option>Triple (3 camas individuales)</option>
+            <option value="60">Doble Deluxe — 2 personas (60€/noche)</option>
+            <option value="70">Doble Deluxe con supletoria — 3 personas (70€/noche)</option>
+            <option value="60">Doble Clásica — 2 personas (60€/noche)</option>
+            <option value="60">Twin — 2 personas (60€/noche)</option>
+            <option value="70">Triple — 3 personas (70€/noche)</option>
           </select>
         </div>
         <div class="form-group">
@@ -272,7 +316,6 @@
             <option>1 persona</option>
             <option>2 personas</option>
             <option>3 personas</option>
-            <option>4 personas</option>
           </select>
         </div>
         <div class="form-group full">
@@ -280,8 +323,13 @@
           <textarea class="form-input" rows="3" placeholder="Alergias, necesidades especiales, hora de llegada aproximada..." id="f-notas" style="resize:vertical"></textarea>
         </div>
       </div>
+      <div class="precio-estimado" id="precio-est">
+        <div class="pe-label">Precio estimado</div>
+        <div class="pe-total" id="pe-total">—</div>
+        <div class="pe-detalle" id="pe-detalle"></div>
+      </div>
       <button class="form-submit" onclick="enviarReserva()">Solicitar reserva</button>
-      <p class="form-note">📅 Tu solicitud se sincroniza automáticamente con nuestro calendario. Confirmamos en menos de 24h.</p>
+      <p class="form-note">📅 Tu solicitud llega directamente a la pensión. Confirmamos en menos de 24h.</p>
       <div class="success-msg" id="success-msg">✅ ¡Solicitud enviada! Te escribiremos a tu email en menos de 24h para confirmar la disponibilidad.</div>
     </div>
   </div>
@@ -291,8 +339,16 @@
   <div class="section-inner">
     <div class="location-grid">
       <div>
-        <div class="section-label">Cómo llegar</div>
-        <div class="location-map"></div>
+        <div class="section-label" style="display:block;margin-bottom:1rem">Cómo llegar</div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11598!2d-4.4487619!3d43.3862919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDIzJzEwLjciTiA0wrAyNicxNS42Ilc!5e0!3m2!1ses!2ses!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Pensión Quintana en Prellezo, Cantabria">
+          </iframe>
+        </div>
       </div>
       <div class="location-info">
         <h3>Prellezo, en el corazón verde de Cantabria</h3>
@@ -313,7 +369,7 @@
           <div class="loc-text"><strong>Parking gratuito</strong><span>Parking propio en las instalaciones, sin coste adicional</span></div>
         </div>
         <div class="location-item">
-          <div class="loc-icon">📞</div>
+          <div class="loc-icon">📧</div>
           <div class="loc-text"><strong>Contacto directo</strong><span>pension-quintana@hotmail.com</span></div>
         </div>
       </div>
@@ -337,21 +393,22 @@
         </div>
       </div>
       <div class="quick-btns">
-        <button class="quick-btn" onclick="sendQuick('¿Qué habitaciones tenéis disponibles?')">Habitaciones</button>
+        <button class="quick-btn" onclick="sendQuick('¿Qué habitaciones tenéis?')">Habitaciones</button>
         <button class="quick-btn" onclick="sendQuick('¿Cuál es el precio por noche?')">Precios</button>
         <button class="quick-btn" onclick="sendQuick('¿Cómo llego a Prellezo?')">Cómo llegar</button>
         <button class="quick-btn" onclick="sendQuick('¿Admitís mascotas?')">Mascotas</button>
         <button class="quick-btn" onclick="sendQuick('¿A qué hora es el check-in?')">Check-in</button>
+        <button class="quick-btn" onclick="sendQuick('¿Tenéis oferta activa?')">Ofertas</button>
       </div>
       <div class="chat-messages" id="chat-msgs">
         <div class="msg msg-bot">
-          <div class="msg-bubble">¡Hola! 👋 Soy el asistente de la <strong>Pensión Quintana</strong> en Prellezo, Cantabria. Estoy aquí para resolver todas tus dudas sobre habitaciones, precios, disponibilidad o cómo llegar. ¿En qué te puedo ayudar?</div>
+          <div class="msg-bubble">¡Hola! 👋 Soy el asistente de la <strong>Pensión Quintana</strong> en Prellezo, Cantabria. Estoy aquí para resolver tus dudas sobre habitaciones, precios, disponibilidad o cómo llegar. ¿En qué te puedo ayudar?</div>
           <div class="msg-time">Ahora</div>
         </div>
       </div>
-      <div class="chat-typing" id="chat-typing" style="display:none;padding:0.5rem 1.5rem">
+      <div class="chat-typing" id="chat-typing">
         <span></span><span></span><span></span>
-        <span style="font-size:0.78rem;color:var(--gris);margin-left:4px;background:none;border-radius:0;padding:0">Escribiendo...</span>
+        <span style="font-size:0.78rem;color:#5a5a5a;margin-left:4px">Escribiendo...</span>
       </div>
       <div class="chat-input-area">
         <input class="chat-input" type="text" id="chat-input" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendMsg()">
@@ -365,68 +422,71 @@
   <div class="footer-logo">Pensión Quintana</div>
   <div style="color:rgba(255,255,255,0.5);font-size:0.85rem">Prellezo, Cantabria, España</div>
   <div class="footer-links">
-    <a href="#habitaciones">Habitaciones</a>
-    <a href="#reservar">Reservar</a>
-    <a href="#ubicacion">Cómo llegar</a>
+    <a onclick="document.getElementById('habitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</a>
+    <a onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</a>
+    <a onclick="document.getElementById('ubicacion').scrollIntoView({behavior:'smooth'})">Cómo llegar</a>
     <a href="mailto:pension-quintana@hotmail.com">Email</a>
   </div>
   <div class="footer-copy">© 2025 Pensión Quintana · Todos los derechos reservados</div>
 </footer>
 
 <script>
+// ============================================================
+// IMPORTANTE: PEGA TU API KEY DE ANTHROPIC AQUI ABAJO
+// Obtén una gratis en: https://console.anthropic.com
+// ============================================================
+const ANTHROPIC_API_KEY = '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';
+
 const PENSION_INFO = `Eres el asistente virtual de la Pensión Quintana, ubicada en Prellezo, Cantabria, España.
 
-INFORMACIÓN DE LA PENSIÓN:
-- Nombre: Pensión Quintana
-- Ubicación: Prellezo, Cantabria (cerca de los Picos de Europa)
-- Email: pension-quintana@hotmail.com
-- También disponible en Airbnb
-
 HABITACIONES (6 en total):
-1. Habitación Doble Deluxe (x2): cama de matrimonio + sofá cama supletorio. Precio: ~65€/noche. Hasta 3 personas.
-2. Habitación Doble Clásica (x2): cama de matrimonio. Precio: ~55€/noche. 2 personas.
-3. Habitación Twin (x1): dos camas individuales. Precio: ~55€/noche. 2 personas.
-4. Habitación Triple (x1): tres camas individuales. Precio: ~75€/noche. 3 personas.
+1. Doble Deluxe (x2): cama de matrimonio + sofá cama supletorio. 2 personas: 60€/noche. 3 personas con supletoria: 70€/noche.
+2. Doble Clásica (x2): cama de matrimonio. 60€/noche. 2 personas.
+3. Twin (x1): dos camas individuales. 60€/noche. 2 personas.
+4. Triple (x1): tres camas individuales. 70€/noche. 3 personas.
 
-SERVICIOS: WiFi gratuito, parking gratuito, baño privado en todas las habitaciones, limpieza diaria, desayuno disponible, check-in flexible.
+OFERTA HASTA EL 1 DE JULIO: reservando más de una noche hay 5€ de descuento por noche en todas las habitaciones.
 
-UBICACIÓN:
-- A 35 km de los Picos de Europa
-- A 40 km de las playas de Comillas y San Vicente de la Barquera
-- A 80 km de Santander por la A-8
+SERVICIOS: WiFi gratuito, parking gratuito, baño privado, limpieza diaria, desayuno disponible, check-in flexible.
 
-RESERVAS: Los huéspedes pueden reservar directamente rellenando el formulario de la web o contactando por email. También se puede reservar por Airbnb.
+UBICACIÓN: Prellezo, Cantabria. A 35 km de los Picos de Europa, 40 km de las playas de Comillas y San Vicente, 80 km de Santander por la A-8.
 
-Responde siempre en español, de forma amable, cercana y concisa. Si no sabes algo específico (disponibilidad exacta en fechas concretas, etc.) invita al huésped a consultar por email o rellenar el formulario de reserva. No inventes información que no esté aquí.`;
+CONTACTO: pension-quintana@hotmail.com. También en Airbnb.
+
+Responde siempre en español, de forma amable y concisa. Si no sabes algo específico (disponibilidad exacta) invita a rellenar el formulario o escribir al email.`;
 
 let chatHistory = [];
 
 async function callClaude(userMsg) {
-  chatHistory.push({role:'user',content:userMsg});
+  chatHistory.push({role:'user', content:userMsg});
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:400,
-        system:PENSION_INFO,
-        messages:chatHistory
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: PENSION_INFO,
+        messages: chatHistory
       })
     });
     const data = await resp.json();
-    const text = data.content?.[0]?.text || 'Lo siento, no puedo responder ahora. Por favor contacta por email.';
-    chatHistory.push({role:'assistant',content:text});
+    const text = data.content?.[0]?.text || 'Lo siento, no puedo responder ahora. Escríbenos a pension-quintana@hotmail.com';
+    chatHistory.push({role:'assistant', content:text});
     if(chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
     return text;
   } catch(e) {
-    return 'Lo siento, ha habido un problema técnico. Puedes escribirnos a pension-quintana@hotmail.com y te respondemos enseguida.';
+    return 'Lo siento, ha habido un problema técnico. Puedes escribirnos a pension-quintana@hotmail.com';
   }
 }
 
 function addMsg(text, isUser) {
   const msgs = document.getElementById('chat-msgs');
-  const now = new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+  const now = new Date().toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
   const div = document.createElement('div');
   div.className = 'msg ' + (isUser ? 'msg-user' : 'msg-bot');
   div.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${now}</div>`;
@@ -442,7 +502,7 @@ async function sendMsg() {
   addMsg(text, true);
   const typing = document.getElementById('chat-typing');
   typing.style.display = 'flex';
-  document.getElementById('chat-msgs').scrollTop = document.getElementById('chat-msgs').scrollHeight;
+  document.getElementById('chat-msgs').scrollTop = 99999;
   const reply = await callClaude(text);
   typing.style.display = 'none';
   addMsg(reply, false);
@@ -453,22 +513,57 @@ function sendQuick(text) {
   sendMsg();
 }
 
+function calcPrecio() {
+  const entrada = document.getElementById('f-entrada').value;
+  const salida = document.getElementById('f-salida').value;
+  const habSel = document.getElementById('f-hab');
+  const precioBase = parseInt(habSel.value) || 0;
+  if(!entrada || !salida || !precioBase) { document.getElementById('precio-est').style.display='none'; return; }
+  const d1 = new Date(entrada), d2 = new Date(salida);
+  const noches = Math.round((d2-d1)/(1000*60*60*24));
+  if(noches <= 0) { document.getElementById('precio-est').style.display='none'; return; }
+  const ofertaActiva = new Date() < new Date('2025-07-01');
+  const descuento = (noches > 1 && ofertaActiva) ? 5 : 0;
+  const precioPorNoche = precioBase - descuento;
+  const total = precioPorNoche * noches;
+  document.getElementById('precio-est').style.display = 'block';
+  document.getElementById('pe-total').textContent = total + '€ total';
+  let detalle = noches + ' noche' + (noches>1?'s':'') + ' × ' + precioPorNoche + '€';
+  if(descuento > 0) detalle += ' (oferta -5€/noche aplicada ✨)';
+  document.getElementById('pe-detalle').textContent = detalle;
+}
+
 function enviarReserva() {
   const nombre = document.getElementById('f-nombre').value;
   const email = document.getElementById('f-email').value;
   const entrada = document.getElementById('f-entrada').value;
   const salida = document.getElementById('f-salida').value;
-  const hab = document.getElementById('f-hab').value;
-  if(!nombre || !email || !entrada || !salida || !hab) {
+  const habEl = document.getElementById('f-hab');
+  const hab = habEl.options[habEl.selectedIndex]?.text || '';
+  if(!nombre || !email || !entrada || !salida || !habEl.value) {
     alert('Por favor rellena todos los campos obligatorios.');
     return;
   }
   const personas = document.getElementById('f-personas').value;
   const notas = document.getElementById('f-notas').value;
-  const subject = encodeURIComponent(`Solicitud de reserva - ${nombre}`);
-  const body = encodeURIComponent(`Hola,\n\nSolicito reserva con los siguientes datos:\n\nNombre: ${nombre}\nEmail: ${email}\nFecha entrada: ${entrada}\nFecha salida: ${salida}\nHabitación: ${hab}\nPersonas: ${personas}\nPeticiones: ${notas || 'Ninguna'}\n\nQuedo a la espera de confirmación.\n\nGracias.`);
-  window.open(`mailto:pension-quintana@hotmail.com?subject=${subject}&body=${body}`);
+  const peTotal = document.getElementById('pe-total').textContent;
+  const subject = encodeURIComponent('Solicitud de reserva - ' + nombre);
+  const body = encodeURIComponent(
+    'Hola,\n\nSolicito reserva con los siguientes datos:\n\n' +
+    'Nombre: ' + nombre + '\n' +
+    'Email: ' + email + '\n' +
+    'Fecha entrada: ' + entrada + '\n' +
+    'Fecha salida: ' + salida + '\n' +
+    'Habitación: ' + hab + '\n' +
+    'Personas: ' + personas + '\n' +
+    (peTotal ? 'Precio estimado: ' + peTotal + '\n' : '') +
+    'Peticiones especiales: ' + (notas || 'Ninguna') + '\n\n' +
+    'Quedo a la espera de confirmación.\n\nGracias.'
+  );
+  window.open('mailto:pension-quintana@hotmail.com?subject=' + subject + '&body=' + body);
   document.getElementById('success-msg').style.display = 'block';
-  setTimeout(()=>document.getElementById('success-msg').style.display='none', 6000);
+  setTimeout(() => document.getElementById('success-msg').style.display='none', 6000);
 }
 </script>
+</body>
+</html>
