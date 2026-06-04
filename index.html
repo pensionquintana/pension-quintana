@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pensión Quintana — Prellezo, Cantabria</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
@@ -76,11 +77,23 @@
   .form-input:focus{outline:none;border-color:var(--verde-claro)}
   .form-select{border:1px solid var(--gris-claro);border-radius:6px;padding:10px 14px;font-family:var(--fuente-cuerpo);font-size:0.9rem;color:#333;background:#fff;cursor:pointer}
   .precio-estimado{background:var(--verde-suave);border-radius:8px;padding:1rem 1.2rem;margin-top:1rem;display:none}
-  .precio-estimado .pe-label{font-size:0.78rem;color:var(--verde-med);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-  .precio-estimado .pe-total{font-family:var(--fuente-titulo);font-size:1.8rem;color:var(--verde);font-weight:600}
-  .precio-estimado .pe-detalle{font-size:0.8rem;color:var(--gris);margin-top:2px}
-  .form-submit{background:var(--tierra);color:#fff;border:none;padding:14px;border-radius:6px;font-family:var(--fuente-cuerpo);font-size:0.95rem;font-weight:700;cursor:pointer;width:100%;margin-top:0.5rem;transition:background 0.2s}
-  .form-submit:hover{background:var(--tierra-claro)}
+  .pe-label{font-size:0.78rem;color:var(--verde-med);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+  .pe-total{font-family:var(--fuente-titulo);font-size:1.8rem;color:var(--verde);font-weight:600}
+  .pe-detalle{font-size:0.8rem;color:var(--gris);margin-top:2px}
+  .pe-senal{font-size:0.85rem;color:var(--tierra);font-weight:700;margin-top:6px}
+  /* Stripe payment box */
+  .stripe-box{background:#f8f8ff;border:1px solid #ddd;border-radius:8px;padding:1.2rem;margin-top:1rem;display:none}
+  .stripe-box-title{font-size:0.85rem;font-weight:700;color:var(--verde);margin-bottom:0.8rem;display:flex;align-items:center;gap:8px}
+  .stripe-box-title span{background:var(--verde);color:#fff;font-size:0.7rem;padding:2px 8px;border-radius:20px}
+  #card-element{border:1px solid var(--gris-claro);border-radius:6px;padding:12px;background:#fff;margin-bottom:0.8rem}
+  #card-errors{color:#e53e3e;font-size:0.8rem;margin-bottom:0.8rem;min-height:1rem}
+  .stripe-submit{background:var(--tierra);color:#fff;border:none;padding:12px;border-radius:6px;font-family:var(--fuente-cuerpo);font-size:0.9rem;font-weight:700;cursor:pointer;width:100%;transition:background 0.2s}
+  .stripe-submit:hover{background:var(--tierra-claro)}
+  .stripe-submit:disabled{opacity:0.6;cursor:not-allowed}
+  .stripe-note{font-size:0.72rem;color:var(--gris);text-align:center;margin-top:6px}
+  .stripe-lock{font-size:0.75rem;color:var(--gris);display:flex;align-items:center;justify-content:center;gap:4px;margin-top:4px}
+  .form-submit{background:var(--verde);color:#fff;border:none;padding:14px;border-radius:6px;font-family:var(--fuente-cuerpo);font-size:0.95rem;font-weight:700;cursor:pointer;width:100%;margin-top:1rem;transition:background 0.2s}
+  .form-submit:hover{background:var(--verde-med)}
   .form-note{font-size:0.78rem;color:var(--gris);text-align:center;margin-top:0.8rem}
   .success-msg{display:none;background:var(--verde-suave);border:1px solid var(--verde-claro);color:var(--verde);border-radius:8px;padding:1.2rem;text-align:center;margin-top:1rem;font-weight:700}
   .chat-section{background:var(--verde)}
@@ -181,10 +194,10 @@
       <div class="amenity-card"><div class="amenity-icon">🅿️</div><div class="amenity-name">Parking gratuito</div></div>
       <div class="amenity-card"><div class="amenity-icon">🏔️</div><div class="amenity-name">Vistas naturales</div></div>
       <div class="amenity-card"><div class="amenity-icon">🛁</div><div class="amenity-name">Baño privado</div></div>
-      <div class="amenity-card"><div class="amenity-icon">☕</div><div class="amenity-name">Desayuno disponible</div></div>
+      <div class="amenity-card"><div class="amenity-icon">🍳</div><div class="amenity-name">Desayuno a la carta</div></div>
       <div class="amenity-card"><div class="amenity-icon">🧹</div><div class="amenity-name">Limpieza diaria</div></div>
-      <div class="amenity-card"><div class="amenity-icon">🔑</div><div class="amenity-name">Check-in flexible</div></div>
-      <div class="amenity-card"><div class="amenity-icon">🌲</div><div class="amenity-name">Entorno rural</div></div>
+      <div class="amenity-card"><div class="amenity-icon">💳</div><div class="amenity-name">Efectivo y tarjeta</div></div>
+      <div class="amenity-card"><div class="amenity-icon">🚭</div><div class="amenity-name">No fumadores</div></div>
     </div>
   </div>
 </section>
@@ -223,7 +236,7 @@
         </div>
         <div class="room-body">
           <div class="room-name">Habitación Doble Clásica</div>
-          <div class="room-desc">Dos habitaciones dobles con cama de matrimonio. Perfectas para parejas que buscan tranquilidad en plena naturaleza. Disponible x2.</div>
+          <div class="room-desc">Cama de matrimonio en un espacio tranquilo y acogedor. Perfecta para parejas. Disponible x2.</div>
           <div class="room-features"><span class="room-feat">👫 2 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
           <div class="room-footer">
             <div>
@@ -241,7 +254,7 @@
         </div>
         <div class="room-body">
           <div class="room-name">Habitación Twin</div>
-          <div class="room-desc">Dos camas individuales, perfecta para amigos o hermanos que viajan juntos y quieren un espacio propio.</div>
+          <div class="room-desc">Dos camas individuales, perfecta para amigos o hermanos que viajan juntos.</div>
           <div class="room-features"><span class="room-feat">👥 2 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
           <div class="room-footer">
             <div>
@@ -259,7 +272,7 @@
         </div>
         <div class="room-body">
           <div class="room-name">Habitación Triple</div>
-          <div class="room-desc">Tres camas individuales, ideal para familias con dos hijos o grupos de tres amigos que quieren compartir espacio.</div>
+          <div class="room-desc">Tres camas individuales, ideal para familias con dos hijos o grupos de tres amigos.</div>
           <div class="room-features"><span class="room-feat">👨‍👩‍👧 3 personas</span><span class="room-feat">🛁 Baño privado</span><span class="room-feat">📶 WiFi</span></div>
           <div class="room-footer">
             <div>
@@ -279,7 +292,7 @@
     <div class="section-header">
       <div class="section-label">Haz tu reserva</div>
       <div class="section-title">Reserva directa sin comisiones</div>
-      <div class="section-sub">Rellena el formulario y te confirmamos disponibilidad en menos de 24h</div>
+      <div class="section-sub">Rellena el formulario y paga la señal del 10% para confirmar tu reserva</div>
     </div>
     <div class="booking-form">
       <div class="form-grid">
@@ -323,14 +336,28 @@
           <textarea class="form-input" rows="3" placeholder="Alergias, necesidades especiales, hora de llegada aproximada..." id="f-notas" style="resize:vertical"></textarea>
         </div>
       </div>
+
       <div class="precio-estimado" id="precio-est">
         <div class="pe-label">Precio estimado</div>
         <div class="pe-total" id="pe-total">—</div>
         <div class="pe-detalle" id="pe-detalle"></div>
+        <div class="pe-senal" id="pe-senal"></div>
       </div>
-      <button class="form-submit" onclick="enviarReserva()">Solicitar reserva</button>
-      <p class="form-note">📅 Tu solicitud llega directamente a la pensión. Confirmamos en menos de 24h.</p>
-      <div class="success-msg" id="success-msg">✅ ¡Solicitud enviada! Te escribiremos a tu email en menos de 24h para confirmar la disponibilidad.</div>
+
+      <!-- Stripe payment box -->
+      <div class="stripe-box" id="stripe-box">
+        <div class="stripe-box-title">💳 Pagar señal del 10% ahora <span>Seguro con Stripe</span></div>
+        <div id="card-element"></div>
+        <div id="card-errors"></div>
+        <button class="stripe-submit" id="stripe-btn" onclick="pagarSenal()">Pagar señal — <span id="stripe-importe">—</span></button>
+        <p class="stripe-note">El resto del importe se abona en la pensión (efectivo o tarjeta).</p>
+        <div class="stripe-lock">🔒 Pago seguro cifrado con Stripe</div>
+      </div>
+
+      <button class="form-submit" onclick="enviarReserva()">Solicitar reserva sin señal</button>
+      <p class="form-note">📅 Si prefieres no pagar ahora, te contactamos en menos de 24h para confirmar disponibilidad.</p>
+      <div class="success-msg" id="success-msg">✅ ¡Solicitud enviada! Te escribiremos a tu email en menos de 24h para confirmar.</div>
+      <div class="success-msg" id="success-pago" style="background:#e8f4fd;border-color:#3182ce;color:#1a365d">✅ ¡Señal pagada correctamente! Te confirmamos la reserva por email en breve.</div>
     </div>
   </div>
 </section>
@@ -342,16 +369,20 @@
         <div class="section-label" style="display:block;margin-bottom:1rem">Cómo llegar</div>
         <div class="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11598!2d-4.4487619!3d43.3862919!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDIzJzEwLjciTiA0wrAyNicxNS42Ilc!5e0!3m2!1ses!2ses!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2898!2d-4.4479337!3d43.3868816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDIzJzEyLjgiTiA0wrAyNicxMi42Ilc!5e0!3m2!1ses!2ses!4v1&q=Barrio+el+Lugar+7+Prellezo+Cantabria"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Pensión Quintana en Prellezo, Cantabria">
+            title="Pensión Quintana — Barrio el Lugar 7, Prellezo, Cantabria">
           </iframe>
         </div>
       </div>
       <div class="location-info">
         <h3>Prellezo, en el corazón verde de Cantabria</h3>
+        <div class="location-item">
+          <div class="loc-icon">📍</div>
+          <div class="loc-text"><strong>Dirección</strong><span>Barrio el Lugar 7, 39548 Prellezo, Cantabria</span></div>
+        </div>
         <div class="location-item">
           <div class="loc-icon">🏔️</div>
           <div class="loc-text"><strong>Picos de Europa</strong><span>A 35 km de los accesos principales al Parque Nacional</span></div>
@@ -366,11 +397,11 @@
         </div>
         <div class="location-item">
           <div class="loc-icon">🚗</div>
-          <div class="loc-text"><strong>Parking gratuito</strong><span>Parking propio en las instalaciones, sin coste adicional</span></div>
+          <div class="loc-text"><strong>Parking gratuito</strong><span>Parking propio en las instalaciones</span></div>
         </div>
         <div class="location-item">
           <div class="loc-icon">📧</div>
-          <div class="loc-text"><strong>Contacto directo</strong><span>pension-quintana@hotmail.com</span></div>
+          <div class="loc-text"><strong>Contacto</strong><span>pension-quintana@hotmail.com</span></div>
         </div>
       </div>
     </div>
@@ -398,11 +429,12 @@
         <button class="quick-btn" onclick="sendQuick('¿Cómo llego a Prellezo?')">Cómo llegar</button>
         <button class="quick-btn" onclick="sendQuick('¿Admitís mascotas?')">Mascotas</button>
         <button class="quick-btn" onclick="sendQuick('¿A qué hora es el check-in?')">Check-in</button>
+        <button class="quick-btn" onclick="sendQuick('¿Tenéis desayuno?')">Desayuno</button>
         <button class="quick-btn" onclick="sendQuick('¿Tenéis oferta activa?')">Ofertas</button>
       </div>
       <div class="chat-messages" id="chat-msgs">
         <div class="msg msg-bot">
-          <div class="msg-bubble">¡Hola! 👋 Soy el asistente de la <strong>Pensión Quintana</strong> en Prellezo, Cantabria. Estoy aquí para resolver tus dudas sobre habitaciones, precios, disponibilidad o cómo llegar. ¿En qué te puedo ayudar?</div>
+          <div class="msg-bubble">¡Hola! 👋 Soy el asistente de la <strong>Pensión Quintana</strong> en Prellezo, Cantabria. Estoy aquí para resolver tus dudas sobre habitaciones, precios, desayuno, check-in o cómo llegar. ¿En qué te puedo ayudar?</div>
           <div class="msg-time">Ahora</div>
         </div>
       </div>
@@ -420,7 +452,7 @@
 
 <footer class="footer">
   <div class="footer-logo">Pensión Quintana</div>
-  <div style="color:rgba(255,255,255,0.5);font-size:0.85rem">Prellezo, Cantabria, España</div>
+  <div style="color:rgba(255,255,255,0.5);font-size:0.85rem">Barrio el Lugar 7, 39548 Prellezo, Cantabria</div>
   <div class="footer-links">
     <a onclick="document.getElementById('habitaciones').scrollIntoView({behavior:'smooth'})">Habitaciones</a>
     <a onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">Reservar</a>
@@ -432,29 +464,70 @@
 
 <script>
 // ============================================================
-// IMPORTANTE: PEGA TU API KEY DE ANTHROPIC AQUI ABAJO
-// Obtén una gratis en: https://console.anthropic.com
+// 1. CLAVE API DE ANTHROPIC (chatbot)
+//    Obtén la tuya gratis en: https://console.anthropic.com
 // ============================================================
-const ANTHROPIC_API_KEY = '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';
+const ANTHROPIC_API_KEY = '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';
 
-const PENSION_INFO = `Eres el asistente virtual de la Pensión Quintana, ubicada en Prellezo, Cantabria, España.
+// ============================================================
+// 2. CLAVE PÚBLICA DE STRIPE (pagos)
+//    Obtén la tuya gratis en: https://dashboard.stripe.com
+//    Usa la clave que empieza por pk_live_ (o pk_test_ para pruebas)
+// ============================================================
+const STRIPE_PUBLIC_KEY = 'PEGA_AQUI_TU_CLAVE_PUBLICA_DE_STRIPE';
+
+// ============================================================
+// INFORMACIÓN DE LA PENSIÓN PARA EL CHATBOT
+// ============================================================
+const PENSION_INFO = `Eres el asistente virtual de la Pensión Quintana, ubicada en Prellezo, Cantabria, España. Responde siempre en español, de forma amable, cercana y concisa.
+
+DATOS DE LA PENSIÓN:
+- Nombre: Pensión Quintana
+- Dirección: Barrio el Lugar 7, 39548 Prellezo, Cantabria, España
+- Email: pension-quintana@hotmail.com
+- También disponible en Airbnb
 
 HABITACIONES (6 en total):
-1. Doble Deluxe (x2): cama de matrimonio + sofá cama supletorio. 2 personas: 60€/noche. 3 personas con supletoria: 70€/noche.
-2. Doble Clásica (x2): cama de matrimonio. 60€/noche. 2 personas.
-3. Twin (x1): dos camas individuales. 60€/noche. 2 personas.
-4. Triple (x1): tres camas individuales. 70€/noche. 3 personas.
+1. Doble Deluxe (x2): cama de matrimonio + sofá cama supletorio opcional.
+   - 2 personas: 60€/noche
+   - 3 personas (con supletoria): 70€/noche
+2. Doble Clásica (x2): cama de matrimonio. 60€/noche. Máx. 2 personas.
+3. Twin (x1): dos camas individuales. 60€/noche. Máx. 2 personas.
+4. Triple (x1): tres camas individuales. 70€/noche. Máx. 3 personas.
 
-OFERTA HASTA EL 1 DE JULIO: reservando más de una noche hay 5€ de descuento por noche en todas las habitaciones.
+OFERTA VÁLIDA HASTA EL 1 DE JULIO DE 2025:
+Reservando más de una noche hay un descuento de 5€ por noche en todas las habitaciones.
+Ejemplos: Doble 2 noches = 55€/noche. Triple 3 noches = 65€/noche.
 
-SERVICIOS: WiFi gratuito, parking gratuito, baño privado, limpieza diaria, desayuno disponible, check-in flexible.
+CHECK-IN Y CHECK-OUT:
+- Check-in: a partir de las 13:00h
+- Check-out: hasta las 11:00h
 
-UBICACIÓN: Prellezo, Cantabria. A 35 km de los Picos de Europa, 40 km de las playas de Comillas y San Vicente, 80 km de Santander por la A-8.
+DESAYUNO:
+- Disponemos de desayuno a la carta con distintas opciones en el comedor de la planta baja de la pensión.
 
-CONTACTO: pension-quintana@hotmail.com. También en Airbnb.
+NORMAS DE LA CASA:
+- No se admiten mascotas.
+- Prohibido fumar en las habitaciones. Se puede fumar en la terraza del comedor.
 
-Responde siempre en español, de forma amable y concisa. Si no sabes algo específico (disponibilidad exacta) invita a rellenar el formulario o escribir al email.`;
+FORMAS DE PAGO:
+- En la pensión: efectivo o tarjeta.
+- Al reservar online: se puede pagar una señal del 10% con tarjeta a través de la web (Stripe). El resto se abona en la pensión.
 
+UBICACIÓN Y DISTANCIAS:
+- A 35 km de los Picos de Europa.
+- A 40 km de las playas de Comillas y San Vicente de la Barquera.
+- A 80 km de Santander por la A-8.
+- Parking gratuito en las instalaciones.
+
+RESERVAS:
+Los huéspedes pueden reservar rellenando el formulario de la web (con opción de pagar señal del 10% online) o contactando directamente por email. También disponible en Airbnb.
+
+Si no sabes algo específico (disponibilidad exacta en fechas concretas) invita al huésped a rellenar el formulario de reserva o escribir al email. No inventes información que no esté aquí.`;
+
+// ============================================================
+// CHATBOT
+// ============================================================
 let chatHistory = [];
 
 async function callClaude(userMsg) {
@@ -513,26 +586,92 @@ function sendQuick(text) {
   sendMsg();
 }
 
+// ============================================================
+// STRIPE
+// ============================================================
+let stripe, cardElement, senalImporte = 0;
+
+function initStripe() {
+  if(STRIPE_PUBLIC_KEY === 'PEGA_AQUI_TU_CLAVE_PUBLICA_DE_STRIPE') return;
+  try {
+    stripe = Stripe(STRIPE_PUBLIC_KEY);
+    const elements = stripe.elements();
+    cardElement = elements.create('card', {
+      style: {base: {fontFamily:'Lato,sans-serif', fontSize:'15px', color:'#333'}}
+    });
+    cardElement.mount('#card-element');
+    cardElement.on('change', e => {
+      document.getElementById('card-errors').textContent = e.error ? e.error.message : '';
+    });
+  } catch(e) { console.log('Stripe no inicializado:', e); }
+}
+
+window.addEventListener('load', initStripe);
+
+async function pagarSenal() {
+  if(!stripe || !cardElement) {
+    alert('Stripe no está configurado. Añade tu clave pública de Stripe en el archivo.');
+    return;
+  }
+  const btn = document.getElementById('stripe-btn');
+  btn.disabled = true;
+  btn.textContent = 'Procesando...';
+  const nombre = document.getElementById('f-nombre').value;
+  const email = document.getElementById('f-email').value;
+  if(!nombre || !email) {
+    alert('Por favor rellena tu nombre y email antes de pagar.');
+    btn.disabled = false;
+    btn.innerHTML = 'Pagar señal — <span id="stripe-importe">' + senalImporte + '€</span>';
+    return;
+  }
+  // Nota: para cobros reales necesitas un backend. Aquí simulamos el flujo frontend.
+  // Con Stripe Payment Links (ver instrucciones abajo) no necesitas backend.
+  alert('Para activar el cobro real con Stripe, sigue las instrucciones del archivo README o usa Stripe Payment Links desde tu dashboard de Stripe.');
+  btn.disabled = false;
+  btn.innerHTML = 'Pagar señal — <span id="stripe-importe">' + senalImporte + '€</span>';
+}
+
+// ============================================================
+// CALCULADORA DE PRECIO
+// ============================================================
 function calcPrecio() {
   const entrada = document.getElementById('f-entrada').value;
   const salida = document.getElementById('f-salida').value;
   const habSel = document.getElementById('f-hab');
   const precioBase = parseInt(habSel.value) || 0;
-  if(!entrada || !salida || !precioBase) { document.getElementById('precio-est').style.display='none'; return; }
+  const stripeBox = document.getElementById('stripe-box');
+  if(!entrada || !salida || !precioBase) {
+    document.getElementById('precio-est').style.display = 'none';
+    stripeBox.style.display = 'none';
+    return;
+  }
   const d1 = new Date(entrada), d2 = new Date(salida);
   const noches = Math.round((d2-d1)/(1000*60*60*24));
-  if(noches <= 0) { document.getElementById('precio-est').style.display='none'; return; }
+  if(noches <= 0) {
+    document.getElementById('precio-est').style.display = 'none';
+    stripeBox.style.display = 'none';
+    return;
+  }
   const ofertaActiva = new Date() < new Date('2025-07-01');
   const descuento = (noches > 1 && ofertaActiva) ? 5 : 0;
   const precioPorNoche = precioBase - descuento;
   const total = precioPorNoche * noches;
+  senalImporte = Math.ceil(total * 0.10);
   document.getElementById('precio-est').style.display = 'block';
   document.getElementById('pe-total').textContent = total + '€ total';
   let detalle = noches + ' noche' + (noches>1?'s':'') + ' × ' + precioPorNoche + '€';
-  if(descuento > 0) detalle += ' (oferta -5€/noche aplicada ✨)';
+  if(descuento > 0) detalle += ' (oferta -5€/noche ✨)';
   document.getElementById('pe-detalle').textContent = detalle;
+  document.getElementById('pe-senal').textContent = '→ Señal del 10%: ' + senalImporte + '€ · Resto en la pensión: ' + (total - senalImporte) + '€';
+  document.getElementById('stripe-importe').textContent = senalImporte + '€';
+  stripeBox.style.display = 'block';
+  const btn = document.getElementById('stripe-btn');
+  btn.innerHTML = 'Pagar señal — ' + senalImporte + '€';
 }
 
+// ============================================================
+// FORMULARIO DE RESERVA (sin pago)
+// ============================================================
 function enviarReserva() {
   const nombre = document.getElementById('f-nombre').value;
   const email = document.getElementById('f-email').value;
@@ -562,7 +701,7 @@ function enviarReserva() {
   );
   window.open('mailto:pension-quintana@hotmail.com?subject=' + subject + '&body=' + body);
   document.getElementById('success-msg').style.display = 'block';
-  setTimeout(() => document.getElementById('success-msg').style.display='none', 6000);
+  setTimeout(() => document.getElementById('success-msg').style.display = 'none', 6000);
 }
 </script>
 </body>
